@@ -12,6 +12,9 @@ b = 0
 k = 0
 while b!=4:
     g = input("Ваше число: ")
+    if len(g) != 4 or not g.isdigit() or len(set(g))!=4:
+        print("Ошибка. Введи 4 РАЗНЫЕ ЦИФРЫ")
+        continue
     b = 0
     k = 0
     for i in range(4):
