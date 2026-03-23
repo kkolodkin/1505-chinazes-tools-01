@@ -35,3 +35,5 @@ def generate_random_numbers():
     print(f"\nСгенерированные числа ({count} шт. в диапазоне от {min_val} до {max_val}):")
     print(random_numbers)
 generate_random_numbers()
+
+
