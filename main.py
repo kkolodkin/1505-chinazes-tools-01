@@ -6,3 +6,4 @@ def done_():
     print(f"Цитата: {data['content']}")
     print(f"Автор: {data['author']}")
 done_()
+
