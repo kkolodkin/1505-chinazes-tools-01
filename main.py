@@ -42,6 +42,7 @@ def play_game():
         print(f"Выбор компьютера: {computer_choice}")
         print(f"{get_winner(player_choice, computer_choice)}")
 
+
 play_game()
 
 
