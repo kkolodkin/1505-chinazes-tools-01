@@ -2,7 +2,6 @@ import requests
 import json
 
 def get_weather_moscow():
-    """Получает текущий прогноз погоды в Москве через Open‑Meteo API."""
     url = "https://api.open-meteo.com/v1/forecast"
     params = {
         'latitude': 55.7558,
