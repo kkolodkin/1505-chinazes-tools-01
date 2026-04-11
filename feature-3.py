@@ -1,44 +1,50 @@
-import random
+def print_board(board):
+    for row in board:
+        print(" | ".join(row))
+        print("-" * 9)
 
-def get_winner(player, computer):
-    if player == computer:
-        return "Ничья!"
+def check_winner(board, player):
+    for i in range(3):
+        if all([board[i][j] == player for j in range(3)]) or \
+           all([board[j][i] == player for j in range(3)]):
+            return True
+    if all([board[i][i] == player for i in range(3)]) or \
+       all([board[i][2-i] == player for i in range(3)]):
+        return True
+    return False
+
+def tic_tac_toe():
+    board = [[" " for _ in range(3)] for _ in range(3)]
+    current_player = "X"
+    steps = 0
+
+    print("--- Крестики-нолики ---")
     
-    winning_combinations = {
-        "камень": "ножницы",
-        "ножницы": "бумага",
-        "бумага": "камень"
-    }
-    
-    if winning_combinations[player] == computer:
-        return "Вы выиграли!"
-    else:
-        return "Компьютер выиграл!"
-
-def play_game():
-    choices = ["камень", "ножницы", "бумага"]
-    
-    print("\n=== Игра 'Камень, ножницы, бумага' ===")
-    print("Доступные варианты: камень, ножницы, бумага")
-    print("Для выхода введите 'выход'")
-    
-    while True:
-
-        player_choice = input("Ваш выбор: ").lower().strip()
-
-        if player_choice == "выход":
-            print("Спасибо за игру! До свидания!")
-            break
-
-        if player_choice not in choices:
-            print("ОШИБКА: Неверный параметр!")
-            print(f"Пожалуйста, выберите из: {', '.join(choices)}")
+    while steps < 9:
+        print_board(board)
+        try:
+            row = int(input(f"Игрок {current_player}, выберите строку (0, 1, 2): "))
+            col = int(input(f"Игрок {current_player}, выберите столбец (0, 1, 2): "))
+            
+            if board[row][col] != " ":
+                print("Эта клетка уже занята! Попробуйте снова.")
+                continue
+        except (ValueError, IndexError):
+            print("Ошибка ввода! Введите числа от 0 до 2.")
             continue
 
-        computer_choice = random.choice(choices)
+        board[row][col] = current_player
+        steps += 1
 
-        print(f"Ваш выбор: {player_choice}")
-        print(f"Выбор компьютера: {computer_choice}")
-        print(f"{get_winner(player_choice, computer_choice)}")
+        if check_winner(board, current_player):
+            print_board(board)
+            print(f"Поздравляем! Игрок {current_player} победил!")
+            return
 
-play_game()
+        current_player = "O" if current_player == "X" else "X"
+
+    print_board(board)
+    print("Ничья!")
+
+if __name__ == "__main__":
+    tic_tac_toe()
