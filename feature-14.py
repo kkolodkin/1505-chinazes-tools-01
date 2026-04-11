@@ -1,7 +1,6 @@
 from deep_translator import GoogleTranslator
 
 def translate_app():
-    # Инициализируем переводчик: с русского на английский
     translator = GoogleTranslator(source='ru', target='en')
     
     print("--- Русско-английский переводчик ---")
@@ -13,12 +12,9 @@ def translate_app():
         if text.lower() == 'exit':
             print("Программа завершена.")
             break
-        
         if not text.strip():
             continue
-            
         try:
-            # Выполняем перевод
             translation = translator.translate(text)
             print(f"Перевод на английский: {translation}")
         except Exception as e:
