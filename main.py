@@ -73,17 +73,9 @@ while 1:
     elif 2 < int(user_choice) < 17:
         # print(prog[int(user_choice) - 3])
         module_name = f"feature_{int(user_choice)-2}"
-
-        # Формируем имя функции (совпадает с именем модуля, например, 'feature_5')
         function_name = f"feature_{int(user_choice)-2}"
-
-        # Динамически импортируем модуль
         module = importlib.import_module(module_name)
-
-        # Получаем функцию из модуля по имени и вызываем её
         func = getattr(module, function_name)
-        func()  # Вызываем функцию
-
-
+        func()
     else:
         print("Invalid choice. Try again.")
